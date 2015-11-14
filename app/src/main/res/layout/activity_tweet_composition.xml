@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lsilbers.apps.twitternator.fragments.TweetCompositionFragment"
+    android:background="#FFFFFF">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivMyProfile"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/ivMyProfile"
+        android:layout_toRightOf="@id/ivMyProfile"
+        android:id="@+id/tvMyName"
+        android:layout_alignTop="@id/ivMyProfile"
+        android:textColor="@color/name"
+        android:textSize="@dimen/name_size"
+        />
+
+    <TextView
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvMyUsername"
+        android:layout_toEndOf="@id/ivMyProfile"
+        android:layout_toRightOf="@id/ivMyProfile"
+        android:layout_below="@id/tvMyName"
+        android:textColor="@color/screen_name"
+        android:textSize="@dimen/screen_name_size"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/ivMyProfile"
+        android:id="@+id/tvCharRemain"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/characters_remaining"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etTweet"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/ivMyProfile"
+        android:hint="@string/hint_tweet"
+        android:maxLength="140"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnTweet"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/etTweet"
+        android:text="@string/tweet"/>
+</RelativeLayout>

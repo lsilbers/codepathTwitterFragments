@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivProfile"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/ic_launcher"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvName"
+        android:layout_alignTop="@id/ivProfile"
+        android:layout_toRightOf="@id/ivProfile"
+        android:layout_toEndOf="@id/ivProfile"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="bottom"
+        android:textColor="@color/name"
+        android:textSize="@dimen/name_size"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvUsername"
+        android:layout_toRightOf="@id/tvName"
+        android:layout_toEndOf="@id/tvName"
+        android:layout_alignBottom="@id/tvName"
+        android:gravity="bottom"
+        android:textColor="@color/screen_name"
+        android:textSize="@dimen/screen_name_size"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:id="@+id/tvTimestamp"
+        android:layout_toRightOf="@id/tvUsername"
+        android:layout_toEndOf="@id/tvUsername"
+        android:layout_alignTop="@id/tvName"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="10sp"
+        android:layout_marginRight="5dp"
+        />
+
+    <com.lsilbers.apps.twitternator.utils.LinkifiedTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Large Text"
+        android:id="@+id/tvBody"
+        android:layout_below="@id/tvName"
+        android:layout_toRightOf="@id/ivProfile"
+        android:layout_toEndOf="@id/ivProfile"
+        android:layout_alignLeft="@id/tvName"
+        android:layout_alignStart="@id/tvName"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:autoLink="all"
+        android:linksClickable="true"/>
+
+
+</RelativeLayout>

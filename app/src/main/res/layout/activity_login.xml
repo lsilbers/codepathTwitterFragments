@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:background="@color/twitter_blue"
+    android:gravity="center">
+
+    <TextView
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvWelcome"
+        android:text="@string/login_welcome"
+        android:textSize="30sp"
+        android:textColor="#FFFFFF"/>
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/tvWelcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_twitter"
+        android:tint="#FFFFFF"
+        android:id="@+id/ivWelcome"/>
+
+    <Button
+        android:layout_below="@id/ivWelcome"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:onClick="loginToRest"
+        android:text="@string/login_label" />
+
+</RelativeLayout>

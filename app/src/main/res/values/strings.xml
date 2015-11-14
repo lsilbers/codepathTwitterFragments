@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Twitternator</string>
+    <string name="login_label">Log in</string>
+    <string name="title_activity_home_timeline">Twitternator</string>
+
+    <string name="hint_tweet">What\'s happening?</string>
+    <string name="tweet">Tweet</string>
+    <string name="title_activity_tweet_composition">Tweet</string>
+    <string name="login_welcome">Welcome to the Twitternator</string>
+    <string name="characters_remaining">140</string>
+    <string name="at_symbol">\@%s</string>
+
+</resources>
