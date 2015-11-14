@@ -7,16 +7,27 @@
     tools:context="com.lsilbers.apps.twitternator.activities.HomeTimelineActivity"
     android:background="#FFFFFF">
 
-    <android.support.design.widget.AppBarLayout android:layout_height="wrap_content"
-        android:layout_width="match_parent" android:theme="@style/AppTheme.AppBarOverlay">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
-            android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
-            android:background="@color/twitter_blue" app:popupTheme="@style/AppTheme.PopupOverlay" />
+        <android.support.design.widget.AppBarLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent" android:theme="@style/AppTheme.AppBarOverlay"
+            android:id="@+id/toolbarContainer">
 
-    </android.support.design.widget.AppBarLayout>
+            <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
+                android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
+                android:background="@color/twitter_blue" app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <include layout="@layout/content_home_timeline" />
+        </android.support.design.widget.AppBarLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbarContainer"
+            android:id="@+id/flFragmentContainer"></FrameLayout>
+
+    </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton android:id="@+id/fab"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
