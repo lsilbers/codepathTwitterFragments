@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:fitsSystemWindows="true"
-    tools:context="com.lsilbers.apps.twitternator.activities.HomeTimelineActivity"
+    tools:context="com.lsilbers.apps.twitternator.activities.TabsActivity"
     android:background="#FFFFFF">
 
     <RelativeLayout
@@ -21,11 +21,20 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <com.astuetz.PagerSlidingTabStrip
+            android:id="@+id/tabs"
+            app:pstsShouldExpand="true"
+            app:pstsTextAllCaps="true"
             android:layout_below="@id/toolbarContainer"
-            android:id="@+id/flFragmentContainer"></FrameLayout>
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tabs"
+            android:background="@android:color/white" />
 
     </RelativeLayout>
 

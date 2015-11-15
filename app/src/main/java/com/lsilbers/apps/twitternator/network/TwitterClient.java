@@ -62,6 +62,62 @@ public class TwitterClient extends OAuthBaseClient {
         Log.d(TAG, "GET " + apiUrl + "?" + params.toString());
 	}
 
+	/**
+	 * Retrieves the mentions timeline
+	 * @param handler the response handler (should take a jsonArray and convert to tweets)
+	 * @param count the number of results to return (defaults to 25)
+	 * @param sinceId the id of the youngest tweet you wish to return (defaults to 1)
+	 * @param maxId the id of the oldest tweet you wish to return
+	 */
+	public void getMentionsTimeline(AsyncHttpResponseHandler handler, @Nullable Integer count, @Nullable Long sinceId, @Nullable Long maxId){
+		String apiUrl = getApiUrl("statuses/mentions_timeline.json");
+		RequestParams params = new RequestParams();
+		if (count == null) {
+			count = DEFAULT_COUNT;
+		}
+		params.put("count", count);
+		if (sinceId == null) {
+			sinceId = 1l;
+		}
+		params.put("since_id", sinceId);
+		// only use max id if specified
+		if (maxId != null) {
+			params.put("max_id", maxId);
+		}
+		client.get(apiUrl, params, handler);
+		Log.d(TAG, "GET " + apiUrl + "?" + params.toString());
+	}
+
+	/**
+	 * Retrieves the user timeline
+	 * @param handler the response handler (should take a jsonArray and convert to tweets)
+	 * @param count the number of results to return (defaults to 25)
+	 * @param sinceId the id of the youngest tweet you wish to return (defaults to 1)
+	 * @param maxId the id of the oldest tweet you wish to return
+	 * @param screenName the screen name of the user for which to return - if null will default to the logged in user
+	 */
+	public void getUserTimeline(AsyncHttpResponseHandler handler, @Nullable Integer count, @Nullable Long sinceId, @Nullable Long maxId, @Nullable String screenName){
+		String apiUrl = getApiUrl("statuses/user_timeline.json");
+		RequestParams params = new RequestParams();
+		if (count == null) {
+			count = DEFAULT_COUNT;
+		}
+		params.put("count", count);
+		if (sinceId == null) {
+			sinceId = 1l;
+		}
+		params.put("since_id", sinceId);
+		// only use max id if specified
+		if (maxId != null) {
+			params.put("max_id", maxId);
+		}
+		if (screenName != null) {
+			params.put("screen_name", screenName);
+		}
+		client.get(apiUrl, params, handler);
+		Log.d(TAG, "GET " + apiUrl + "?" + params.toString());
+	}
+
     /**
      * Gets the details for the currently logged in user
      * @param handler for the response - should expect a json object
