@@ -22,19 +22,16 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
     // iterface to handle tem click events
     public interface OnItemClickListener {
-        void onClick(int position);
+        void onClick(View view, int position);
     }
 
-    private static final String TAG = "TA";
+    private static final String TAG = TweetAdapter.class.getSimpleName();
     private ArrayList<Tweet> tweets;
-    private static OnItemClickListener itemClickListener;
+    private OnItemClickListener itemClickListener;
 
-    public TweetAdapter(ArrayList<Tweet> tweets) {
+    public TweetAdapter(ArrayList<Tweet> tweets, OnItemClickListener listener) {
         this.tweets = tweets;
-    }
-
-    public void setItemClickListener(OnItemClickListener listener) {
-        itemClickListener = listener;
+        this.itemClickListener = listener;
     }
 
     @Override
@@ -68,7 +65,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         return tweets.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivProfile;
         public TextView tvName;
         public TextView tvUsername;
@@ -76,7 +73,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         public TextView tvBody;
         public Context context;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             context = itemView.getContext();
 
@@ -86,15 +83,15 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             tvTimestamp = (TextView) itemView.findViewById(R.id.tvTimestamp);
             tvBody = (TextView) itemView.findViewById(R.id.tvBody);
 
-            itemView.setOnClickListener(this);
-        }
-
-        // delegate handling to the item click listener
-        @Override
-        public void onClick(View v) {
-            if (itemClickListener != null) {
-                itemClickListener.onClick(getAdapterPosition());
-            }
+            itemView.setOnClickListener(new View.OnClickListener() {
+                // delegate handling to the item click listener
+                @Override
+                public void onClick(View v) {
+                    if (itemClickListener != null) {
+                        itemClickListener.onClick(itemView, getAdapterPosition());
+                    }
+                }
+            });
         }
     }
 }

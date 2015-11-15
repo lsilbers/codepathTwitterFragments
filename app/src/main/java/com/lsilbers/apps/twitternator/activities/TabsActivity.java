@@ -17,8 +17,10 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.lsilbers.apps.twitternator.R;
 import com.lsilbers.apps.twitternator.fragments.HomeTimelineFragment;
 import com.lsilbers.apps.twitternator.fragments.MentionsFragment;
+import com.lsilbers.apps.twitternator.fragments.TweetsListFragment;
+import com.lsilbers.apps.twitternator.models.Tweet;
 
-public class TabsActivity extends AppCompatActivity {
+public class TabsActivity extends AppCompatActivity implements TweetsListFragment.TweetClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,13 @@ public class TabsActivity extends AppCompatActivity {
     // called when the profile image is clicked
     public void onProfileView(MenuItem item) {
         Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(Tweet tweet) {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        intent.putExtra(ProfileActivity.USER, tweet.getUser());
         startActivity(intent);
     }
 

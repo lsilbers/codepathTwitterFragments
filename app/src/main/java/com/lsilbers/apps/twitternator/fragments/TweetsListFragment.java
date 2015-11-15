@@ -3,6 +3,7 @@ package com.lsilbers.apps.twitternator.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public abstract class TweetsListFragment extends Fragment {
+public abstract class TweetsListFragment extends Fragment implements TweetAdapter.OnItemClickListener {
     public final String TAG = getClass().getSimpleName();
     protected TwitterClient client;
     private TweetAdapter aTweets;
@@ -61,8 +62,6 @@ public abstract class TweetsListFragment extends Fragment {
             }
         });
 
-        loadInitialResults(aTweets, tweets);
-
         // Inflate the layout for this fragment
         return v;
     }
@@ -71,10 +70,16 @@ public abstract class TweetsListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         tweets = new ArrayList<>();
-        aTweets = new TweetAdapter(tweets);
+        aTweets = new TweetAdapter(tweets, this);
 
         //loadSavedTweets();
         client = TwitterApplication.getTwitterClient();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadInitialResults(aTweets, tweets);
     }
 
     // this requires further thought
@@ -94,6 +99,32 @@ public abstract class TweetsListFragment extends Fragment {
                 getOlderTweets(aTweets, tweets);
             }
         });
+    }
+
+    @Override
+    public void onClick(View view, int position) {
+        onItemClick(tweets.get(position));
+    }
+
+    /**
+     * Called when a tweet is clicked
+     * Attempts to delegate to the container activity through the TweetClickListener interface
+     * @param tweet that was clicked
+     */
+    protected void onItemClick(Tweet tweet) {
+        FragmentActivity activity = getActivity();
+        if (activity instanceof TweetClickListener) {
+            ((TweetClickListener) activity).onClick(tweet);
+        } else {
+            Log.d(TAG, "Activity does not implement "+TweetClickListener.class.getName());
+        }
+    }
+
+    /**
+     * interface that allows activitys to handle events for
+     */
+    public interface TweetClickListener {
+        void onClick(Tweet tweet);
     }
 
     /**
@@ -117,4 +148,7 @@ public abstract class TweetsListFragment extends Fragment {
      * @param tweets the data set
      */
     protected abstract void loadInitialResults(TweetAdapter aTweets, ArrayList<Tweet> tweets);
+
+
+
 }
