@@ -60,6 +60,7 @@
         android:layout_height="wrap_content"
         android:text="Large Text"
         android:id="@+id/tvBody"
+        android:textColor="@color/twitter_black"
         android:layout_below="@id/tvName"
         android:layout_toRightOf="@id/ivProfile"
         android:layout_toEndOf="@id/ivProfile"
